@@ -1,0 +1,6 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: EE runtime check
+      debug:
+        msg: "EE loaded and runnable"
