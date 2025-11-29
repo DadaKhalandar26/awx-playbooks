@@ -1,6 +1,10 @@
 - hosts: localhost
   gather_facts: no
   tasks:
-    - name: EE runtime check
-      debug:
-        msg: "EE loaded and runnable"
+    - name: Try to import netmiko & scrapli (report True/False)
+      command: >
+        python3 -c "import importlib;
+        print('netmiko', importlib.util.find_spec('netmiko') is not None);
+        print('scrapli', importlib.util.find_spec('scrapli') is not None)"
+      register: pycheck
+    - debug: var=pycheck.stdout_lines
